@@ -1,0 +1,22 @@
+version: '3'
+services: 
+  app1:
+    container_name: reverse_proxy_app1_test
+    build: app1/
+    networks:
+      - test
+  app2:
+    container_name: reverse_proxy_app2_test
+    build: app2/
+    networks:
+      - test
+  nginx:
+    container_name: reverse_proxy_nginx_test
+    build: nginx/
+    networks:
+      - test
+    ports:
+      - 80:80
+networks:
+  test:
+    driver: bridge
