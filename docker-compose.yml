@@ -5,10 +5,13 @@ services:
     build: nginx/
     ports:
       - 80:80
+      - 443:443
     environment:
       - ENV=prod
     networks:
       - prod
+    volumes:
+      - ./certs:/certs
 networks:
   prod:
     external:
