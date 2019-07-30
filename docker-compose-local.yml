@@ -1,0 +1,30 @@
+version: '3.5'
+services: 
+  app1_local:
+    container_name: reverse-proxy_app1_local
+    build: app1/
+    environment:
+      - ENV=local
+    networks:
+      - local
+  app2_local:
+    container_name: reverse-proxy_app2_local
+    build: app2/
+    environment:
+      - ENV=local
+    networks:
+      - local
+  nginx_local:
+    depends_on: 
+      - app1_local
+      - app2_local
+    container_name: reverse-proxy_nginx_local
+    build: nginx/
+    environment:
+      - ENV=local
+    networks:
+      - local
+networks:
+  local:
+    name: local
+    driver: bridge
