@@ -37,5 +37,6 @@ The port used for accessing the application is 80.
 ## Dependencies
 
 Docker needs to be installed on the host machine for development or deployment purposes.
+
 A `certs` folder needs to be created at the root level of this package with the certificate files `cert.pem`, `privkey.pem` and `chain.pem`
 
