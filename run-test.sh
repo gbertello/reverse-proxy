@@ -1,4 +1,8 @@
-export COMPOSE_IGNORE_ORPHANS=True
+# Configuration needs to be defined in ~/.profile with the following variables:
+#   - export COMPOSE_IGNORE_ORPHANS=True: This will avoid docker warnings
+#
+
+source ~/.profile
 
 if [ ! -e nginx/proxy_test.conf ]; then
   echo "Create nginx/proxy_test.conf file to configure reverse proxy on test environment."
