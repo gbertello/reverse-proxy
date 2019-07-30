@@ -11,5 +11,6 @@ services:
       - prod
 networks:
   prod:
-    name: prod
-    driver: bridge
+    external:
+      name: prod
+    

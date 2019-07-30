@@ -1,5 +1,8 @@
+export COMPOSE_IGNORE_ORPHANS=True
+
 cp nginx/proxy_local.conf nginx/proxy.conf
 
+docker network create --driver bridge local &> /dev/null
 docker-compose -f docker-compose-local.yml build
 docker-compose -f docker-compose-local.yml up -d
 

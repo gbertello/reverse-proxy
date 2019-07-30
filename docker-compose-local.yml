@@ -26,5 +26,6 @@ services:
       - local
 networks:
   local:
-    name: local
-    driver: bridge
+    external:
+      name: local
+    

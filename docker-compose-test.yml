@@ -11,5 +11,6 @@ services:
       - test
 networks:
   test:
-    name: test
-    driver: bridge
+    external:
+      name: test
+    
