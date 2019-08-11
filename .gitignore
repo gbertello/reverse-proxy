@@ -1,3 +1,4 @@
 nginx/proxy_test.conf
 nginx/proxy_prod.conf
 certs
+deploy.sh

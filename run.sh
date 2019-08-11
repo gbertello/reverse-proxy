@@ -1,3 +1,5 @@
+#!/bin/bash -ex
+#
 # Configuration needs to be defined in ~/.profile with the following variables:
 #   - export COMPOSE_IGNORE_ORPHANS=True: This will avoid docker warnings
 #
@@ -11,7 +13,7 @@ fi
 
 cp nginx/proxy_prod.conf nginx/proxy.conf
 
-docker network create --driver bridge prod &> /dev/null
+docker network create --driver bridge prod &> /dev/null || true
 docker-compose down
 docker-compose build
 docker-compose up -d
