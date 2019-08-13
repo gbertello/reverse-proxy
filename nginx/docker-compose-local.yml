@@ -19,7 +19,7 @@ services:
       - app1_local
       - app2_local
     container_name: reverse-proxy_nginx_local
-    build: nginx/
+    build: .
     environment:
       - ENV=local
     networks:
