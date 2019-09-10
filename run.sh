@@ -11,6 +11,11 @@ if [ ! -e nginx/proxy_prod.conf ]; then
   exit 1
 fi
 
+if [ ! -d certs/ ]; then
+  echo "Generate https certificates with command 'certbot certonly --standalone' and copy the generated files in certs/ directory"
+  exit 1  
+fi
+
 cp nginx/proxy_prod.conf nginx/proxy.conf
 
 docker network create --driver bridge prod &> /dev/null || true
