@@ -3,6 +3,7 @@ services:
   nginx_prod:
     container_name: reverse-proxy_nginx_prod
     build: nginx/
+    restart: always
     ports:
       - 80:80
       - 443:443
