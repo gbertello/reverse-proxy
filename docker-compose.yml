@@ -10,7 +10,7 @@ services:
       - FINANCE_URL=http://finance_ui_prod
       - ENV=prod
     ports:
-      - 26002:80
+      - 80:80
     networks:
       - prod
 networks:
