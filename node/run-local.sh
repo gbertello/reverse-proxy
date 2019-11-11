@@ -1,21 +1,19 @@
 #!/bin/bash -ex
 #
 # Configuration needs to be defined in ~/.profile with the following variables:
-#   - export COMPOSE_IGNORE_ORPHANS=True: This will avoid docker warnings
-#
+#   - USER: user name used for mongodb
+#   - PASSWORD: password used for mongodb
 
 source ~/.profile
 
-cp proxy_local.conf proxy.conf
-
 docker network create --driver bridge local &> /dev/null || true
+docker-compose -f docker-compose-local.yml down || true
+
 docker-compose -f docker-compose-local.yml build
 docker-compose -f docker-compose-local.yml up -d
 
-rm proxy.conf
-
-sleep 1
-docker build -t reverse-proxy_test test/
-docker run -it --rm --network="local" reverse-proxy_test python test.py
+docker build -t app_test test/
+docker run -it --rm --network="local" app_test pytest
 
 docker-compose -f docker-compose-local.yml down
+rm -rf ../storage/node/local

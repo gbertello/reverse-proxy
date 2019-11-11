@@ -1,0 +1,37 @@
+version: '3.5'
+services:
+  node_local:
+    container_name: reverse_proxy_node_local
+    build: .
+    environment:
+      - STORAGE_URL=http://reverse_proxy_mock_storage_local
+      - PERSO_URL=http://reverse_proxy_mock_perso_local
+      - FINANCE_URL=http://reverse_proxy_mock_finance_local
+      - ENV=local
+    networks:
+      - local
+  mock_storage_local:
+    container_name: reverse_proxy_mock_storage_local
+    build: mock_storage/
+    environment:
+      - ENV=local
+    networks:
+      - local
+  mock_perso_local:
+    container_name: reverse_proxy_mock_perso_local
+    build: mock_perso/
+    environment:
+      - ENV=local
+    networks:
+      - local
+  mock_finance_local:
+    container_name: reverse_proxy_mock_finance_local
+    build: mock_finance/
+    environment:
+      - ENV=local
+    networks:
+      - local
+networks:
+  local:
+    external:
+      name: local

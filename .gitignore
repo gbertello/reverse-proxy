@@ -1,4 +1,5 @@
-nginx/proxy_test.conf
-nginx/proxy_prod.conf
-certs
-deploy.sh
+.vscode
+__pycache__
+.pytest_cache
+*.pyc
+storage
