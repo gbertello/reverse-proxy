@@ -3,19 +3,18 @@ services:
   nginx_prod:
     container_name: reverse-proxy_nginx_prod
     build: nginx/
+    restart: always
     ports:
       - 80:80
       - 443:443
     environment:
-      - STORAGE_URL=http://storage_node_prod
-      - PERSO_URL=http://perso_node_prod
-      - FINANCE_URL=http://finance_ui_prod
       - ENV=prod
-    ports:
-      - 80:80
     networks:
       - prod
+    volumes:
+      - ./certs:/certs
 networks:
   prod:
     external:
       name: prod
+    

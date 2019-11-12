@@ -1,18 +1,16 @@
 version: '3.5'
-services:
-  node_test:
-    container_name: reverse_proxy_node_test
-    build: node/
-    environment:
-      - STORAGE_URL=http://storage_node_test
-      - PERSO_URL=http://perso_node_test
-      - FINANCE_URL=http://finance_ui_test
-      - ENV=test
+services: 
+  nginx_test:
+    container_name: reverse-proxy_nginx_test
+    build: nginx/
     ports:
-      - 15002:80
+      - 81:80
+    environment:
+      - ENV=test 
     networks:
       - test
 networks:
   test:
     external:
       name: test
+    
