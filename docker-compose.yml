@@ -1,9 +1,11 @@
 version: '3.5'
-services:
-  node_prod:
-    container_name: reverse_proxy_node_prod
-    build: node/
-    restart: always
+services: 
+  nginx_prod:
+    container_name: reverse-proxy_nginx_prod
+    build: nginx/
+    ports:
+      - 80:80
+      - 443:443
     environment:
       - STORAGE_URL=http://storage_node_prod
       - PERSO_URL=http://perso_node_prod
