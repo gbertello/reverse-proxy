@@ -35,10 +35,8 @@ then
   certbot certificates
   certbot renew --force-renewal
 
-  mkdir -p $CWD/nginx/certs
-  cp /etc/letsencrypt/live/$DOMAIN/* $CWD/nginx/certs/
-
-  $CWD/nginx/start.sh -s prod
+  mkdir -p $CWD/certs
+  cp /etc/letsencrypt/live/$DOMAIN/* $CWD/certs/
 fi
 
 
