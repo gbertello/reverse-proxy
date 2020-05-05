@@ -32,8 +32,8 @@ then
 
   sudo service nginx stop &> /dev/null || true
 
-  certbot certificates
-  certbot renew --force-renewal
+  certbot certificates &> /dev/null ||true
+  certbot renew &> /dev/null || true
 
   mkdir -p $CWD/certs
   cp /etc/letsencrypt/live/$DOMAIN/* $CWD/certs/
