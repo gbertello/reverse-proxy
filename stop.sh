@@ -1,3 +1,5 @@
+CWD=$(cd $(dirname $0) && pwd)
+
 SYSTEM="dev"
 while getopts ":s:" option; do
   case "${option}" in
@@ -7,4 +9,7 @@ while getopts ":s:" option; do
   esac
 done
 
-nginx/stop.sh -s $SYSTEM
+echo "Stopping nginx"
+$CWD/nginx/stop.sh -s $SYSTEM
+echo ""
+
