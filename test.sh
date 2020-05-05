@@ -1,5 +1,13 @@
-#!/bin/bash -ex
+CWD=$(cd $(dirname $0) && pwd)
 
-ENV=$1
+echo "Testing app1"
+$CWD/app1/test.sh
+echo ""
 
-docker exec -it reverse_proxy_test_$1 env TERM=xterm-256color pytest
+echo "Testing app2"
+$CWD/app2/test.sh
+echo ""
+
+echo "Testing nginx"
+$CWD/nginx/test.sh
+echo ""
