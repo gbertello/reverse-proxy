@@ -16,7 +16,7 @@ done
 
 NETWORK=$SYSTEM
 IMAGE=${PARENT##*/}_${CWD##*/}_${SYSTEM}
-
+TARGET_VOLUME="/certs/"
 stop -i $IMAGE &> /dev/null || true
 
 OPTIONS=""
@@ -24,6 +24,9 @@ OPTIONS=""
 if [[ $ENV -eq "prod" ]]
 then
   OPTIONS="$OPTIONS -r always"
+  VOLUME="certs/"
+  OPTIONS="$OPTIONS -v $VOLUME:$TARGET_VOLUME"
+  mkdir -p $VOLUME
 fi
 
 cp $CWD/config/proxy_$SYSTEM.conf $CWD/config/proxy.conf
