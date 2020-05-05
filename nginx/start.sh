@@ -19,7 +19,7 @@ IMAGE=${PARENT##*/}_${CWD##*/}_${SYSTEM}
 stop -i $IMAGE &> /dev/null || true
 
 OPTIONS=""
-OPTIONS="$OPTIONS -p 80:80"
+OPTIONS="$OPTIONS -p 80:80|443:443"
 
 if [[ $ENV -eq "prod" ]]
 then
@@ -28,7 +28,6 @@ then
   TARGET_VOLUME="/certs/"
   OPTIONS="$OPTIONS -v $VOLUME:$TARGET_VOLUME"
   mkdir -p $VOLUME
-  OPTIONS="$OPTIONS -p 443:443"
 fi
 
 
