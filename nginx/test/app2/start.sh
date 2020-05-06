@@ -15,7 +15,7 @@ while getopts ":s:" option; do
 done
 
 NETWORK=$SYSTEM
-IMAGE=${PARENT##*/}_${CWD##*/}_${SYSTEM}
+IMAGE=reverse-proxy_${CWD##*/}_${SYSTEM}
 
 stop -i $IMAGE &> /dev/null || true
 

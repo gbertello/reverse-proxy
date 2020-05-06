@@ -17,13 +17,13 @@ IMAGE_TEST=${PARENT##*/}_${CWD##*/}_${SYSTEM_TEST}
 
 stop -i $IMAGE_TEST &> /dev/null || true
 stop -i $IMAGE &> /dev/null || true
-$CWD/../app1/stop.sh -s test &> /dev/null || true
-$CWD/../app2/stop.sh -s test &> /dev/null || true
+$CWD/test/app1/stop.sh -s test &> /dev/null || true
+$CWD/test/app2/stop.sh -s test &> /dev/null || true
 
 OPTIONS="-v $VOLUME:$TARGET_VOLUME"
 
-$CWD/../app1/start.sh -s test
-$CWD/../app2/start.sh -s test
+$CWD/test/app1/start.sh -s test
+$CWD/test/app2/start.sh -s test
 
 cp $CWD/config/proxy_test.conf $CWD/config/proxy.conf
 start -i $IMAGE -n $NETWORK -s $SYSTEM $OPTIONS
@@ -35,6 +35,6 @@ docker exec $IMAGE_TEST pytest -q --color=yes test.py
 
 stop -i $IMAGE_TEST &> /dev/null || true
 stop -i $IMAGE &> /dev/null || true
-$CWD/../app1/stop.sh -s test &> /dev/null || true
-$CWD/../app2/stop.sh -s test &> /dev/null || true
+$CWD/test/app1/stop.sh -s test &> /dev/null || true
+$CWD/test/app2/stop.sh -s test &> /dev/null || true
 

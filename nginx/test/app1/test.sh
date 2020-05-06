@@ -8,12 +8,12 @@ source $CWD/lib/common.sh
 SYSTEM="test"
 
 NETWORK=$SYSTEM
-IMAGE=${PARENT##*/}_${CWD##*/}_${SYSTEM}
+IMAGE=reverse-proxy_${CWD##*/}_${SYSTEM}
 
 SYSTEM_TEST="pytest"
 
 DOCKERFILE_TEST=$CWD/Dockerfile_test
-IMAGE_TEST=${PARENT##*/}_${CWD##*/}_${SYSTEM_TEST}
+IMAGE_TEST=reverse-proxy_${CWD##*/}_${SYSTEM_TEST}
 
 stop -i $IMAGE_TEST &> /dev/null || true
 stop -i $IMAGE &> /dev/null || true
