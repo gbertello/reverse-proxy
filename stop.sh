@@ -9,7 +9,7 @@ while getopts ":s:" option; do
   esac
 done
 
-echo "Stopping nginx"
-$CWD/nginx/stop.sh -s $SYSTEM
-echo ""
-
+for dir in */ ; do
+  echo "Stopping ${dir%/}..."
+  $CWD/$dir/stop.sh -s $SYSTEM
+done
