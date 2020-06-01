@@ -2,7 +2,8 @@
 
 CWD=$(cd $(dirname $0) && pwd)
 PARENT=$(dirname $CWD)
-DOMAIN="www.guillaume-bertello.fr"
+DOMAIN1="www.guillaume-bertello.fr"
+DOMAIN2="www.bouboustar.fr"
 
 source $CWD/lib/common.sh
 
@@ -29,14 +30,17 @@ then
   TARGET_VOLUME="/certs/"
   OPTIONS="$OPTIONS -v $VOLUME:$TARGET_VOLUME"
   mkdir -p $VOLUME
-
+  
   sudo service nginx stop &> /dev/null || true
 
   certbot certificates &> /dev/null ||true
   certbot renew &> /dev/null || true
 
-  mkdir -p $CWD/certs
-  cp /etc/letsencrypt/live/$DOMAIN/* $CWD/certs/
+  mkdir -p $CWD/$DOMAIN1
+  cp /etc/letsencrypt/live/$DOMAIN1/* $CWD/certs/$DOMAIN1/
+
+  mkdir -p $CWD/$DOMAIN2
+  cp /etc/letsencrypt/live/$DOMAIN2/* $CWD/certs/$DOMAIN2/
 fi
 
 
