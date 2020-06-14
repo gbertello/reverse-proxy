@@ -22,7 +22,7 @@ stop -i $IMAGE &> /dev/null || true
 OPTIONS=""
 OPTIONS="$OPTIONS -p 80:80|443:443"
 
-if [[ $ENV -eq "prod" ]]
+if [[ $SYSTEM -eq "prod" ]]
 then
   OPTIONS="$OPTIONS -r always"
   VOLUME="$CWD/certs/"
