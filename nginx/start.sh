@@ -23,14 +23,14 @@ stop -i $IMAGE &> /dev/null || true
 OPTIONS=""
 OPTIONS="$OPTIONS -p 80:80|443:443"
 
-if [[ $SYSTEM -eq "prod" ]]
+if [[ $SYSTEM == "prod" ]]
 then
   OPTIONS="$OPTIONS -r always"
   VOLUME="$CWD/certs/"
   TARGET_VOLUME="/certs/"
   OPTIONS="$OPTIONS -v $VOLUME:$TARGET_VOLUME"
   mkdir -p $VOLUME
-  
+
   sudo service nginx stop &> /dev/null || true
 
   certbot certificates &> /dev/null ||true
@@ -42,7 +42,6 @@ then
   mkdir -p $CWD/$DOMAIN2
   cp /etc/letsencrypt/live/$DOMAIN2/* $CWD/certs/$DOMAIN2/
 fi
-
 
 cp $CWD/config/proxy_$SYSTEM.conf $CWD/config/proxy.conf
 start -i $IMAGE -s $SYSTEM -n $NETWORK $OPTIONS
