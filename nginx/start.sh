@@ -41,6 +41,11 @@ then
 
   mkdir -p $CWD/$DOMAIN2
   cp /etc/letsencrypt/live/$DOMAIN2/* $CWD/certs/$DOMAIN2/
+
+  if [[ ! -f $CWD/certs/dh4096.pem ]]
+  then
+    openssl dhparam -out $CWD/certs/dh4096.pem 4096
+  fi
 fi
 
 cp $CWD/config/proxy_$SYSTEM.conf $CWD/config/proxy.conf
